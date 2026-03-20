@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: #f0f2f5;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f6f8;
+  --color-surface-3: #eef0f3;
+  --color-border: rgba(0,0,0,0.08);
+  --color-border-dark: rgba(0,0,0,0.14);
+  --color-text: #1a1d23;
+  --color-text-2: #44484f;
+  --color-text-3: #8a8f9a;
+
+  --color-sidebar-bg: #1e2433;
+  --color-sidebar-border: rgba(255,255,255,0.06);
+  --color-sidebar-text: #ffffff;
+  --color-sidebar-text-2: rgba(255,255,255,0.55);
+  --color-sidebar-active: rgba(255,255,255,0.12);
+  --color-sidebar-hover: rgba(255,255,255,0.07);
+
+  --color-accent: #4f6ef7;
+  --color-accent-hover: #3d5ef0;
+  --color-accent-light: rgba(79,110,247,0.1);
+
+  --color-green: #0d9f6e;
+  --color-green-bg: #e6faf4;
+  --color-red: #e03e3e;
+  --color-red-bg: #fff0f0;
+  --color-orange: #d97706;
+  --color-orange-bg: #fff8eb;
+  --color-yellow: #b45309;
+  --color-yellow-bg: #fefce8;
+  --color-blue: #2563eb;
+  --color-blue-bg: #eff6ff;
+  --color-purple: #7c3aed;
+  --color-purple-bg: #f5f3ff;
+  --color-teal: #0891b2;
+  --color-teal-bg: #ecfeff;
+
+  --radius-xl: 12px;
+  --radius-lg: 8px;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .dark {
+    --color-bg: #0f1117;
+    --color-surface: #1a1d27;
+    --color-surface-2: #22263a;
+    --color-surface-3: #2a2e40;
+    --color-border: rgba(255,255,255,0.07);
+    --color-border-dark: rgba(255,255,255,0.13);
+    --color-text: #e8eaf0;
+    --color-text-2: #9ea3b4;
+    --color-text-3: #5a5f72;
+
+    --color-sidebar-bg: #13151e;
+    --color-sidebar-border: rgba(255,255,255,0.05);
+    --color-sidebar-text: #ffffff;
+    --color-sidebar-text-2: rgba(255,255,255,0.45);
+    --color-sidebar-active: rgba(79,110,247,0.25);
+    --color-sidebar-hover: rgba(255,255,255,0.06);
+
+    --color-accent: #6b8aff;
+    --color-accent-hover: #7d9aff;
+    --color-accent-light: rgba(107,138,255,0.15);
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-xl shadow-sm;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all active:scale-95 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-secondary {
+    @apply bg-surface-2 text-text-2 hover:bg-surface-3 border border-border;
+  }
+
+  .btn-danger {
+    @apply bg-red-bg text-red hover:bg-red/10 border border-red/20;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap;
+  }
+
+  .badge-normal { @apply bg-green-bg text-green; }
+  .badge-high { @apply bg-red-bg text-red; }
+  .badge-low { @apply bg-blue-bg text-blue; }
+  .badge-critical { @apply bg-red text-white animate-pulse; }
+  .badge-pending { @apply bg-yellow-bg text-yellow; }
+  .badge-inprogress { @apply bg-blue-bg text-blue; }
+  .badge-completed { @apply bg-green-bg text-green; }
+  .badge-reviewed { @apply bg-purple-bg text-purple; }
+}
