@@ -51,26 +51,61 @@
   }
 
   .dark {
-    --color-bg: #0f1117;
-    --color-surface: #1a1d27;
-    --color-surface-2: #22263a;
-    --color-surface-3: #2a2e40;
-    --color-border: rgba(255,255,255,0.07);
-    --color-border-dark: rgba(255,255,255,0.13);
-    --color-text: #e8eaf0;
-    --color-text-2: #9ea3b4;
-    --color-text-3: #5a5f72;
+    --color-bg: #0b0d11;
+    --color-surface: #151821;
+    --color-surface-2: #1c202e;
+    --color-surface-3: #24293d;
+    --color-border: rgba(255,255,255,0.05);
+    --color-border-dark: rgba(255,255,255,0.1);
+    --color-text: #f0f2f5;
+    --color-text-2: #a1a8b8;
+    --color-text-3: #636a7e;
 
-    --color-sidebar-bg: #13151e;
-    --color-sidebar-border: rgba(255,255,255,0.05);
+    --color-sidebar-bg: #090a0f;
+    --color-sidebar-border: rgba(255,255,255,0.04);
     --color-sidebar-text: #ffffff;
-    --color-sidebar-text-2: rgba(255,255,255,0.45);
-    --color-sidebar-active: rgba(79,110,247,0.25);
-    --color-sidebar-hover: rgba(255,255,255,0.06);
+    --color-sidebar-text-2: rgba(255,255,255,0.4);
+    --color-sidebar-active: rgba(79,110,247,0.2);
+    --color-sidebar-hover: rgba(255,255,255,0.05);
 
-    --color-accent: #6b8aff;
-    --color-accent-hover: #7d9aff;
-    --color-accent-light: rgba(107,138,255,0.15);
+    --color-accent: #7c95ff;
+    --color-accent-hover: #8da5ff;
+    --color-accent-light: rgba(124,149,255,0.12);
+
+    /* Dark mode status backgrounds */
+    --color-green-bg: rgba(13, 159, 110, 0.15);
+    --color-red-bg: rgba(224, 62, 62, 0.15);
+    --color-orange-bg: rgba(217, 119, 6, 0.15);
+    --color-yellow-bg: rgba(180, 83, 9, 0.15);
+    --color-blue-bg: rgba(37, 99, 235, 0.15);
+    --color-purple-bg: rgba(124, 58, 237, 0.15);
+    --color-teal-bg: rgba(8, 145, 178, 0.15);
+  }
+
+  * {
+    @apply selection:bg-accent/20 selection:text-accent;
+  }
+
+  .dark * {
+    @apply selection:bg-accent/30 selection:text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-border-dark transition-colors;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-surface-3 rounded-full hover:bg-text-3/20 transition-colors;
   }
 }
 
@@ -107,4 +142,89 @@
   .badge-inprogress { @apply bg-blue-bg text-blue; }
   .badge-completed { @apply bg-green-bg text-green; }
   .badge-reviewed { @apply bg-purple-bg text-purple; }
+}
+
+@media print {
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Hide everything except the modal content */
+  aside, 
+  header, 
+  main, 
+  .fixed.inset-0:not(.print-modal-backdrop) {
+    display: none !important;
+  }
+
+  /* Reset modal backdrop for printing */
+  .print-modal-backdrop {
+    position: static !important;
+    display: block !important;
+    background: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    z-index: auto !important;
+  }
+
+  /* Reset modal content for printing */
+  .print-modal-content {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    background: white !important;
+    color: black !important;
+    height: auto !important;
+    max-height: none !important;
+    display: block !important;
+  }
+
+  /* Ensure tables look professional on paper */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  th, td {
+    border-bottom: 1px solid #eee !important;
+    color: black !important;
+    padding: 12px 8px !important;
+  }
+
+  th {
+    background-color: #f9f9f9 !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Badges in print */
+  .badge {
+    border: 1px solid #ddd !important;
+    color: black !important;
+    background: none !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Remove animations for print */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

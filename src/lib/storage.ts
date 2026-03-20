@@ -43,6 +43,22 @@ export const storage = {
     return `R-${next.toString().padStart(5, '0')}`;
   },
 
+  seedMaxIds: (patientId: number, resultId: number) => {
+    localStorage.setItem(KEYS.MAX_PATIENT_ID, patientId.toString());
+    localStorage.setItem(KEYS.MAX_RESULT_ID, resultId.toString());
+  },
+
+  syncMaxIds: (patients: Patient[], results: LabResult[]) => {
+    const maxP = Math.max(...patients.map(p => parseInt(p.id.split('-')[1]) || 0), 0);
+    const maxR = Math.max(...results.map(r => parseInt(r.id.split('-')[1]) || 0), 0);
+    
+    const currentP = parseInt(localStorage.getItem(KEYS.MAX_PATIENT_ID) || '0');
+    const currentR = parseInt(localStorage.getItem(KEYS.MAX_RESULT_ID) || '0');
+    
+    if (maxP > currentP) localStorage.setItem(KEYS.MAX_PATIENT_ID, maxP.toString());
+    if (maxR > currentR) localStorage.setItem(KEYS.MAX_RESULT_ID, maxR.toString());
+  },
+
   clearAll: () => {
     Object.values(KEYS).forEach(key => localStorage.removeItem(key));
   }

@@ -7,6 +7,7 @@ export type Gender = 'Male' | 'Female' | 'Other';
 export type BloodType = 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
 export type ResultStatus = 'pending' | 'in-progress' | 'completed' | 'reviewed';
 export type Flag = 'normal' | 'low' | 'high' | 'critical' | 'pending';
+export type View = 'dashboard' | 'patients' | 'results' | 'panels' | 'history' | 'patientDetail' | 'settings';
 
 export interface TestDefinition {
   name: string;
